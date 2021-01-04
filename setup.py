@@ -26,7 +26,7 @@ setup(
     ],
     packages=["testly"],
     include_package_data=True,
-    install_requires=["requests", "zeep","behave","selenium","mysql-connector-python","psycopg2"],
+    install_requires=["requests", "zeep"],
     entry_points={
         "console_scripts": [
             "testly-man=testly.__main__:main",

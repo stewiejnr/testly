@@ -1,2 +1,2 @@
-import mysql-connector-python
+import mysql.connector
 import psycopg2
