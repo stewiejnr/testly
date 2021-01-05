@@ -1,2 +1,3 @@
-import mysql-connector-python
-import psycopg2
+#Temporary disabled
+# import mysql.connector
+# import psycopg2
