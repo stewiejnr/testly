@@ -1,3 +1,4 @@
-import behave
-import selenium
+#Temporary disabled
+# import behave
+# import selenium
 

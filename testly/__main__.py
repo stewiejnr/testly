@@ -53,7 +53,9 @@ def main(argv):
                 print("--proxysec          Sets Https proxy")
                 return sys.exit(0)
             elif arg == "rest":
-                print("How to use Testly REST module")
+                print("How to use Testly REST module\n")
+                print("Usage: python -m testly -c rest [OPTION] ENDPOINT_URL\n")
+                print("Available OPTIONS: getStatus")
                 return sys.exit(0)
             elif arg == "database":
                 print("How to use Testly database module")
@@ -62,10 +64,10 @@ def main(argv):
                 print("How to use Testly behaviour testing module")
                 return sys.exit(0)
             else:
-                print('python -m artify --help soap       Help on how to test SOAP endpoint')
-                print('python -m artify --help rest       Help on how to test REST endpoint')
-                print('python -m artify --help bdd        Help on how to do BDD test')
-                print('python -m artify --help datbase    Help on how to execute database test')
+                print('python -m testly --help soap       Help on how to test SOAP endpoint')
+                print('python -m testly --help rest       Help on how to test REST endpoint')
+                print('python -m testly --help bdd        Help on how to do BDD test')
+                print('python -m testly --help datbase    Help on how to execute database test')
         elif opt == "--debug":
             debug = 1
         elif opt in ("-c", "--command"):
@@ -73,6 +75,11 @@ def main(argv):
             if action == '':
                 print("Invalid command specified")
                 return sys.exit(2)
+            if "rest" in action:
+                options = args
+                if options[0] == "getStatus":
+                    rest.Restly().getStatus(options[1])
+
         elif opt in ("-h","--host"):
             host = arg
         elif opt == "--proxy":
