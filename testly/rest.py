@@ -10,7 +10,11 @@ def call_restendpoint():
 
 class Restly:
 
-    def getStatus(self,URL):
-        response = requests.get(URL)
-        print("Status Code for Request: {} ".format(response.status_code))
-        return __main__.sys.exit(0)
+    def getStatus(self, URL):
+        try:
+            HTTPResponse = requests.get(URL)
+            print("Status Code for Request: {} ".format(HTTPResponse.status_code))
+            return __main__.sys.exit(0)
+        except requests.exceptions.RequestException as RaisedException:
+            print(RaisedException)
+            return __main__.sys.exit(0)

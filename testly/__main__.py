@@ -76,9 +76,10 @@ def main(argv):
                 print("Invalid command specified")
                 return sys.exit(2)
             if "rest" in action:
-                options = args
-                if options[0] == "getStatus":
-                    rest.Restly().getStatus(options[1])
+                if(args):
+                    options = args
+                    if options[0] == "getStatus":
+                        rest.Restly().getStatus(options[1])
 
         elif opt in ("-h","--host"):
             host = arg
