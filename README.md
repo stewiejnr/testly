@@ -1,4 +1,4 @@
-Perform SOAP and REST test
+Perform SOAP, REST and UI / Feature tests
 
 
 Installation
