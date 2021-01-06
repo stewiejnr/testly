@@ -55,6 +55,7 @@ def main(argv):
             elif arg == "rest":
                 print("How to use Testly REST module\n")
                 print("Usage: python -m testly -c rest [OPTION] ENDPOINT_URL\n")
+                print("-h, --host   Nexus host base url e.g https://.<yourcompany>.com")
                 print("Available OPTIONS: getStatus")
                 return sys.exit(0)
             elif arg == "database":
@@ -70,16 +71,13 @@ def main(argv):
                 print('python -m testly --help datbase    Help on how to execute database test')
         elif opt == "--debug":
             debug = 1
+
         elif opt in ("-c", "--command"):
             action = arg
             if action == '':
                 print("Invalid command specified")
                 return sys.exit(2)
-            if "rest" in action:
-                if(args):
-                    options = args
-                    if options[0] == "getStatus":
-                        rest.Restly().getStatus(options[1])
+                
 
         elif opt in ("-h","--host"):
             host = arg
@@ -88,12 +86,17 @@ def main(argv):
         
         elif opt == "--proxysec":
             proxies['https'] = arg    
-            
+    
     if action == 'soap':
         soap.call_soapendpoint()
     elif action == 'rest':
         rest.call_restendpoint()
+
+    elif action =='http':
+        rest.Restly().getStatus(args[0])
+
     return sys.exit(0) 
+
     
            
 
