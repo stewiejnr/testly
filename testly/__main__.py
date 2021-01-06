@@ -93,7 +93,7 @@ def main(argv):
         rest.call_restendpoint()
 
     elif action =='http':
-        rest.Restly().getStatus(args[0])
+        rest.Restly().getStatus(host)
 
     return sys.exit(0) 
 
