@@ -5,6 +5,7 @@ from testly import rest
 from testly import soap
 from testly import database
 from testly import behaviour
+from testly import utilities
 
 debug = 0
 
@@ -91,7 +92,8 @@ def main(argv):
         soap.call_soapendpoint()
     elif action == 'rest':
         rest.call_restendpoint()
-
+    elif action == 'texecute':
+        utilities.YAMLReader().read(r"C:\Users\rstewart\Documents\pers-dev\testly\test.yaml")
     elif action =='http':
         rest.Restly().getStatus(host)
 
