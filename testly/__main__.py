@@ -1,5 +1,6 @@
 import sys, getopt
-import os
+import os 
+import pathlib
 from testly import __version__
 from testly import rest
 from testly import soap
@@ -93,7 +94,8 @@ def main(argv):
     elif action == 'rest':
         rest.call_restendpoint()
     elif action == 'texecute':
-        utilities.YAMLReader().read(r"C:\Users\rstewart\Documents\pers-dev\testly\test.yaml")
+        path = str(pathlib.Path().absolute())
+        utilities.YAMLReader().read(path+"\\test.yaml")
     elif action =='http':
         rest.Restly().getStatus(host)
 
