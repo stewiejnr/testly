@@ -95,7 +95,7 @@ def main(argv):
         rest.call_restendpoint()
     elif action == 'texecute':
         path = str(pathlib.Path().absolute())
-        utilities.YAMLReader().read(path+"\\test.yaml")
+        utilities.YAMLReader().read(path+"\\tests.yaml")
     elif action =='http':
         rest.Restly().getStatus(host)
 
