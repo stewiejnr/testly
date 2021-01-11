@@ -1,17 +1,18 @@
 import yaml
-import rest
+from testly import rest
 import errno
 import __main__
 
 
 
 class YAMLReader:
+    Restly = rest.Restly()
 
     def read(self, filename):
         try:
             with open(filename) as file:
                 instruction_dict = yaml.load(file, Loader=yaml.FullLoader)
-                print(instruction_dict)
+                #print(instruction_dict)
                 self.testProcessor(instruction_dict)
                 return instruction_dict
         except:
@@ -29,11 +30,11 @@ class YAMLReader:
     def testProcessor(self, test_dictionary):
 
         for test_id, test_instructions in test_dictionary.items():
-            print("\n Test ID: {}".format(test_id))
+            print(" Test ID: {} \n".format(test_id))
             instruction_set = {}
             for key in test_instructions:
     
                 instruction_set[key] = test_instructions[key]
-                print(key, test_instructions[key])
+                #print(key, test_instructions[key])
 
-        self.rest.executeTests(instruction_set)
+            self.Restly.executeTests(instruction_set)

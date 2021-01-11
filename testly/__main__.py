@@ -29,11 +29,14 @@ def main(argv):
     action = ''
     global debug
     global host
+    yamlDirectory = ''
+    yamlFile = ''
 
     try:
-        opts, args = getopt.getopt(argv, "c:h:", ["command=", "help=", 
+        opts, args = getopt.getopt(argv, "c:f:h:w:", ["command=", "help=", 
                                                 "--host=",
-                                                "debug"
+                                                "debug",
+                                                "--directory=", "--file="
                                                ])
         
     except getopt.GetoptError:
@@ -83,19 +86,40 @@ def main(argv):
 
         elif opt in ("-h","--host"):
             host = arg
+            print(host)
         elif opt == "--proxy":
             proxies['http'] = arg
         
         elif opt == "--proxysec":
-            proxies['https'] = arg    
+            proxies['https'] = arg 
+
+        elif opt == "-w":
+            yamlDirectory = arg   
+          
+        elif opt == "-f":
+            yamlFile = arg   
+          
     
     if action == 'soap':
         soap.call_soapendpoint()
     elif action == 'rest':
         rest.call_restendpoint()
     elif action == 'texecute':
-        path = str(pathlib.Path().absolute())
-        utilities.YAMLReader().read(path+"\\tests.yaml")
+        suffix= '.yaml'
+        if (yamlDirectory == '') :
+            path = str(pathlib.Path().absolute())
+            print("\t Default Path ")
+            utilities.YAMLReader().read(path+"\\test.yaml")
+
+        elif (yamlFile == ''):
+            print("please enter the name of the yaml file ")
+
+        else:
+            path = os.path.join(yamlDirectory, yamlFile + suffix)
+            print("\t {} \n".format(path))
+            utilities.YAMLReader().read(path)
+
+
     elif action =='http':
         rest.Restly().getStatus(host)
 
