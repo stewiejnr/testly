@@ -20,6 +20,7 @@ or
 
 Available commands  &nbsp; &nbsp; &nbsp; &nbsp; http, texecute
 
+
 Test HTTP URL
 =============
 
@@ -36,6 +37,7 @@ Test HTTP URL
 
 --proxysec  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Sets Https proxy
 
+-----
 Test REST Endpoint
 =============
 
@@ -51,24 +53,46 @@ or
 
 -f &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The yaml file containing all the test cases.
 
+-----
+
 **YAML File Example Layout**
+```
+ test1:
+    testType: Rest
+    requestMethod: get
+    url: https://api.github.com/users/defunkt
+    responseCode: 200
+    bodyContains: 
+      login: defunkt
+      name: Chris Wanstrath*
+    
 
-- *test1:
-  testType: Rest
-  requestMethod: get
-  url: https://api.github.com/users/defunkt
-  responseCode: 200
-  bodyContains: 
-    &nbsp;&nbsp;login: defunkt
-    &nbsp;&nbsp;name: Chris Wanstrath*
-    <br/>
+  test2:
+    testType: Rest
+    requestMethod: post
+    url: https://droopal.free.beeceptor.com/droopal
+    responseCode: 201
+    payload:
+      status: "Awesome!"
+    bodyContains:
+      status: "Awesome!"
+    
+  test3:
+    testType: Rest
+    requestMethod: put
+    url: https://droopal.free.beeceptor.com/droopal
+    responseCode: 200
+    payload:
+      status: "Edited!"
+    bodyContains:
+      status: "Edited!"
+      when: "Today!"
 
-- *test2:
-  testType: Rest
-  requestMethod: post
-  url: https://testaroo.free.beeceptor.com/api/postTest/2
-  responseCode: 200
-  bodyContains: 
-    &nbsp; &nbsp;status: Awesome!
-    &nbsp;&nbsp; working: True*
-     
+  test4:
+    testType: Rest
+    requestMethod: delete
+    url: https://droopal.free.beeceptor.com/droopal
+    responseCode: 200
+  
+  ```
+----

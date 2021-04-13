@@ -68,15 +68,41 @@ class Restly:
         except requests.exceptions.RequestException as RaisedException:
             print(RaisedException)
 
+     
+    def processRequestPutPost(self, URL, requestMethod, bodyContains,requestCode,payload):
+
+        try:
+            HTTPRequest = self.function_mappings[requestMethod](URL,payload)
+            print("Status Code for {}: {} . Request Matched {} \n".
+            format(URL,HTTPRequest.status_code, HTTPRequest.status_code==requestCode))
+
+            ## Determine if the body contains what the user has specified                                                   
+            json_response = HTTPRequest.json()
+            for key, value in bodyContains.items():
+                print("Response body for {} key contains {} . Body Matched : {} \n".format(
+                 key, json_response[key],json_response[key]==value
+             ))
+
+
+        except requests.exceptions.RequestException as RaisedException:
+            print(RaisedException)
+
 
     def executeTests(self, testParams):
 
         try:
             ##If the user enters a key value pair that must be in the response
-            if "bodyContains" in testParams:
+            if "bodyContains" and "payload" in testParams:
+                self.processRequestPutPost(
+                testParams['url'], testParams['requestMethod'],testParams['bodyContains'],
+                testParams['responseCode'],testParams['payload'])
+
+            elif "bodyContains" in testParams:
+
                 self.processRequest(
-                    testParams['url'], testParams['requestMethod'],testParams['bodyContains'],
-                    testParams['responseCode'])
+                testParams['url'], testParams['requestMethod'],testParams['bodyContains'],
+                testParams['responseCode'])
+            
             else:
                  self.processRequest(
                     testParams['url'], testParams['requestMethod'])
