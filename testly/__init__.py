@@ -1,4 +1,4 @@
 # __init__.py
 
 # Version of Testly
-__version__ = "1.0.2"
+__version__ = "1.0.3"
